@@ -1,18 +1,12 @@
 package com.java.lms.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -30,17 +24,18 @@ public class Book {
     private String title;
     private String year;
     private String isbn;
+    @JsonProperty("available_books")
     private String availableBooks;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Publisher publisher;
 
     @NotNull
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Author> authors;
 
 
-    @OneToOne(mappedBy = "book", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "book" ,fetch = FetchType.LAZY)
     private Transaction transactions;
 
     public List<Author> getAuthors()  {
