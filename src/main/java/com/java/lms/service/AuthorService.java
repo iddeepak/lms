@@ -1,10 +1,11 @@
 package com.java.lms.service;
 
 import com.java.lms.model.Author;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public interface AuthorService {
 
     List<Author> findAll();

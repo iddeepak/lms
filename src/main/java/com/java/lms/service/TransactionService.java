@@ -4,10 +4,11 @@ package com.java.lms.service;
 import com.java.lms.model.Book;
 import com.java.lms.model.Person;
 import com.java.lms.model.Transaction;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public interface TransactionService {
 
     Transaction save(Transaction transaction);

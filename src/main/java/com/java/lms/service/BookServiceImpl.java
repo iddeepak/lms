@@ -32,15 +32,6 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByTitle( title);
     }
 
-    @Override
-    public List<Book> findByPublisher(Publisher pub) {
-        return bookRepository.findByPublisher(pub);
-    }
-
-    @Override
-    public List<Book> findByAuthors(List<Author> auths) {
-        return bookRepository.findByAuthors(auths);
-    }
 
 
     @Override
