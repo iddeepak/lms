@@ -7,13 +7,14 @@ import com.java.lms.model.Book;
 import com.java.lms.service.AuthorService;
 import com.java.lms.service.BookService;
 import com.java.lms.service.PublisherService;
+import com.java.lms.util.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.ValidationException;
 import java.util.ArrayList;
 
 
@@ -42,6 +43,20 @@ public class BooksController {
         pub = new PublisherDTO(temp.getPublisher().getId(), temp.getPublisher().getName());
 
         return new BookDTO(temp.getId(), temp.getTitle(), pub, auths);
+
+
+    }
+
+    @DeleteMapping("/deleteBook/{id}")
+    public ResponseEntity<ErrorMessage> deleteBook(@PathVariable Long id) throws ValidationException {
+        Book b=bookService.findById(id);
+        if(b!=null) {
+            bookService.deleteById(id);
+            return new ResponseEntity<ErrorMessage>(new ErrorMessage("200", "Ok"), HttpStatus.OK);
+        }
+        else {
+            throw new ValidationException("Don't Exist");
+        }
 
 
     }
