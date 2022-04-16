@@ -3,7 +3,9 @@ package com.java.lms.controller;
 import com.java.lms.dto.AuthorDTO;
 import com.java.lms.dto.BookDTO;
 import com.java.lms.dto.PublisherDTO;
+import com.java.lms.model.Author;
 import com.java.lms.model.Book;
+import com.java.lms.model.Publisher;
 import com.java.lms.service.AuthorService;
 import com.java.lms.service.BookService;
 import com.java.lms.service.PublisherService;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -42,8 +45,26 @@ public class BooksController {
         }
         pub = new PublisherDTO(temp.getPublisher().getId(), temp.getPublisher().getName());
 
-        return new BookDTO(temp.getId(), temp.getTitle(), pub, auths);
+        return new BookDTO(temp.getId(), temp.getTitle(), temp.getYear() , temp.getIsbn() , temp.getAvailableBooks() , pub, auths);
 
+
+    }
+
+    @PutMapping("/updateBook")
+    public BookDTO updateBook(@Valid @RequestBody Book book) {
+
+        Book temp =  bookService.save(book);
+        ArrayList<AuthorDTO> auths = new ArrayList<>();
+        AuthorDTO autt;
+        PublisherDTO pub;
+
+        for (int k = 0; k < temp.getAuthors().size(); k++) {
+            autt = new AuthorDTO(temp.getAuthors().get(k).getId(), temp.getAuthors().get(k).getName());
+            auths.add(autt);
+        }
+        pub = new PublisherDTO(temp.getPublisher().getId(), temp.getPublisher().getName());
+
+        return new BookDTO(temp.getId(), temp.getTitle(), temp.getYear() , temp.getIsbn() , temp.getAvailableBooks() , pub, auths);
 
     }
 

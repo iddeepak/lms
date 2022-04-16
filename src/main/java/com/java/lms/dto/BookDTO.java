@@ -17,10 +17,13 @@ public class BookDTO {
 
     }
 
-    public BookDTO(Long id, String title, PublisherDTO publisher, ArrayList<AuthorDTO> authors) {
+    public BookDTO(Long id, String title, String year , String isbn , String availableBooks , PublisherDTO publisher, ArrayList<AuthorDTO> authors) {
 
         this.id = id;
         this.title = title;
+        this.year = year;
+        this.isbn = isbn;
+        this.availableBooks = availableBooks;
         this.publisher = publisher;
         this.authors = authors;
     }
