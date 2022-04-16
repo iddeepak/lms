@@ -81,4 +81,22 @@ public class BooksController {
 
 
     }
+    @GetMapping("/getBook/{id}")
+    public BookDTO getBook(@PathVariable Long id) throws ValidationException {
+        Book temp=bookService.findById(id);
+
+        ArrayList<AuthorDTO> auths = new ArrayList<>();
+        AuthorDTO autt;
+        PublisherDTO pub;
+
+        for (int k = 0; k < temp.getAuthors().size(); k++) {
+            autt = new AuthorDTO(temp.getAuthors().get(k).getId(), temp.getAuthors().get(k).getName());
+            auths.add(autt);
+        }
+        pub = new PublisherDTO(temp.getPublisher().getId(), temp.getPublisher().getName());
+
+        return new BookDTO(temp.getId(), temp.getTitle(), temp.getYear() , temp.getIsbn() , temp.getAvailableBooks() , pub, auths);
+
+
+    }
 }
