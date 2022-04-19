@@ -3,9 +3,7 @@ package com.java.lms.controller;
 import com.java.lms.dto.AuthorDTO;
 import com.java.lms.dto.BookDTO;
 import com.java.lms.dto.PublisherDTO;
-import com.java.lms.model.Author;
 import com.java.lms.model.Book;
-import com.java.lms.model.Publisher;
 import com.java.lms.service.AuthorService;
 import com.java.lms.service.BookService;
 import com.java.lms.service.PublisherService;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 @RestController
