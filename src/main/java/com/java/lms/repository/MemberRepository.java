@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 @Repository("memberRepository")
 public interface MemberRepository extends JpaRepository<Person, Long> {
@@ -14,4 +16,5 @@ public interface MemberRepository extends JpaRepository<Person, Long> {
     Person findByEmail(String email);
     @Query("select p.role from Person p WHERE p.email=:email")
     Role findPersonRole(@Param("email") String email);
+    Person findByUsername(String username);
 }

@@ -36,6 +36,13 @@ public class MemberServiceImpl implements MemberService {
     }
     @Override
     @Transactional
+    public Person findByUsername(String username) {
+
+        return memberRepository.findByEmail(username);
+
+    }
+    @Override
+    @Transactional
     public Person findById(Long id) {
 
         return memberRepository.findById(id).get();
