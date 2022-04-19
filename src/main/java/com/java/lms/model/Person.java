@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
@@ -40,6 +41,7 @@ public class Person {
     @Column(unique=true)
     private String email;
 
+    @JsonProperty("expiry_date")
     private String expiryDate;
     @NotNull(message="User Role cannot be empty")
     @Embedded

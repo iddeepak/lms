@@ -34,12 +34,14 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findByEmail(email);
 
     }
-
     @Override
     @Transactional
-    public Optional<Person> findByID(Long id) {
-        return memberRepository.findById(id);
+    public Person findById(Long id) {
+
+        return memberRepository.findById(id).get();
+
     }
+
 
     @Override
     @Transactional
@@ -53,6 +55,7 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.deleteById(id);
 
     }
+
     @Override
     @Transactional
     public boolean isPersonExist(Long id) {
