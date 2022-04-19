@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface MemberService {
     Role findPersonRole(String email);
     Person findByEmail(String email);
+    Person findByUsername(String username);
     List<Person> findAll();
     Person save( Person person);
     void deleteById(Long id);
